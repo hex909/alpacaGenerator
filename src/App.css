@@ -66,6 +66,42 @@ main {
   height: 370px;
   box-shadow: 0px 0px 10px 0 rgba(61, 61, 61, 0.637);
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.err--message {
+  font-size: 1.9rem;
+  font-weight: 200;
+  position: relative;
+}
+
+.err--message::after {
+  content: '';
+  width: 50%;
+  height: 5px;
+  border-radius: 15px;
+  position: absolute;
+  bottom: -20%;
+  left: 0;
+  background-color: var(--bgColor);
+  animation: widther .91s infinite ease-in-out;
+}
+
+@keyframes widther {
+  0% {
+    width: 50%;
+  }
+
+  50% {
+    left: 50%;
+    width: 50%;
+  }
+
+  100% {
+    width: 50%;
+  }
 }
 
 .alpaca>* {
