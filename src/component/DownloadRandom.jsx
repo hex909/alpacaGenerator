@@ -3,7 +3,7 @@ import { saveAs } from 'file-saver'
 import { FaRandom } from 'react-icons/fa'
 import { HiOutlineDocumentDownload } from 'react-icons/hi'
 
-function DownloadRandom({ randomAlpaca }) {
+function DownloadRandom({ randomAlpaca, alpacaRef }) {
     return (
         <section className="download-random">
             <button className="btn-random" onClick={randomAlpaca} ><FaRandom className="btn-icon" /> Random</button>

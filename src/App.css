@@ -136,7 +136,7 @@ img {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: var(--bgColor);
+  color: black;
 }
 
 .btn.background.active {
@@ -206,7 +206,7 @@ img {
   height: 55px;
   cursor: pointer;
   text-transform: capitalize;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 500;
   transition: transform .2s;
 }
@@ -227,6 +227,14 @@ img {
 
   .download-random {
     margin-inline: auto;
+    justify-content: space-around;
+  }
+
+  .btn-random,
+  .btn-download {
+    width: 130px;
+    height: 50px;
+    font-size: 1rem;
   }
 
   .customize {

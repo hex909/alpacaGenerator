@@ -82,7 +82,7 @@ function App() {
       <section className='container' style={{ "--bgColor": img.backgrounds }}>
         <div className='optionsForDown'>
           {img ? <Alpaca img={img} alpacaRef={alpacaRef} /> : <Loading />}
-          <DownloadRandom randomAlpaca={randomAlpaca} />
+          <DownloadRandom randomAlpaca={randomAlpaca} alpacaRef={alpacaRef} />
         </div>
 
         <Customize
