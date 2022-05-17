@@ -13,13 +13,17 @@ function App() {
   const [img, setImg] = useState({});
   const [activeBtn, setActiveBtn] = useState("hair");
   const [optionBtn, setOptionBtn] = useState("default");
-  const [optionItems, setOptionItems] = useState([]);
   const alpacaRef = useRef(null);
 
   useLayoutEffect(() => {
     for (let i in data) {
       if (i === "nose") {
         setImg((oldD) => ({ ...oldD, [i]: "/assets/alpaca/nose.png" }));
+      } else if (i === 'backgrounds') {
+        setImg((oldD) => ({
+          ...oldD,
+          [i]: `${data[i]['photos'][0]}`,
+        }));
       } else {
         setImg((oldD) => ({
           ...oldD,
@@ -30,21 +34,23 @@ function App() {
   }, []);
 
   useEffect(() => {
-    optionItems.forEach(() => {
+
+    if (activeBtn === 'backgrounds') {
+      let colorIndex = data[activeBtn]['photos'].indexOf(optionBtn)
+      setImg((oldD) => ({
+        ...oldD,
+        [activeBtn]: `${data[activeBtn]['photos'][colorIndex]}`,
+      }));
+    } else {
+
+
       setImg((oldD) => ({
         ...oldD,
         [activeBtn]: `/assets/${data[activeBtn]["path"]}/${optionBtn || "default"
           }.png`,
       }));
-    });
-  }, [optionItems]);
+    }
 
-  useEffect(() => {
-    Object.entries(data).forEach((value) => {
-      if (value[0] === activeBtn) {
-        setOptionItems([...value[1].photos]);
-      }
-    });
   }, [optionBtn]);
 
   function randomAlpaca() {
@@ -53,17 +59,27 @@ function App() {
       let random = Math.floor(Math.random() * photos.length);
 
       if (d === "nose") continue;
-      setImg((oldD) => ({
-        ...oldD,
-        [d]: `/assets/${data[d]["path"]}/${photos[random]}.png`,
-      }));
+
+      else if (d === 'backgrounds') {
+        setImg((oldD) => ({
+          ...oldD,
+          [d]: `${data[d]["photos"][random]}`,
+        }));
+      }
+      else {
+
+        setImg((oldD) => ({
+          ...oldD,
+          [d]: `/assets/${data[d]["path"]}/${photos[random]}.png`,
+        }));
+      }
     }
   }
 
   return (
     <main>
       <h1 className='main-title'>Alpaca Generator</h1>
-      <section className='container' style={{ "--bgColor": "blue" }}>
+      <section className='container' style={{ "--bgColor": img.backgrounds }}>
         <div className='optionsForDown'>
           {img ? <Alpaca img={img} alpacaRef={alpacaRef} /> : <Loading />}
           <DownloadRandom randomAlpaca={randomAlpaca} />

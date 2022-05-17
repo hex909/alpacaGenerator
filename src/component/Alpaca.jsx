@@ -5,7 +5,7 @@ function Alpaca({ img, alpacaRef }) {
         <div
             className='alpaca'
             ref={alpacaRef}
-            style={{ backgroundImage: `url(${img.backgrounds})` }}>
+            style={{ backgroundColor: `${img.backgrounds}` }}>
             <img className='ears' src={img.ears} alt='ear' />
             <img className='neck' src={img.neck} alt='neck' />
             <img className='nose' src={img.nose} alt='nose' />
